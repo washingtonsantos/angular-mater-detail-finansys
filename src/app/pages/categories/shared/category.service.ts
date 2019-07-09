@@ -25,7 +25,7 @@ export class CategoryService {
   }
 
   getById(id: number): Observable<Category>{
-    const url = '${{this.apiPath}}/${{id}}';
+    const url = '${{this.apiPath}}/${id}';
 
     return this.http.get(url).pipe(
       catchError(this.handleError),
@@ -41,20 +41,19 @@ export class CategoryService {
   }
 
   update(category: Category): Observable<Category>{
-    const url = '${{this.apiPath}}/${{category.id}}';
+    const url = `${this.apiPath}/${category.id}`;
 
     return this.http.put(url, category).pipe(
       catchError(this.handleError),
       map(() => category)
       )
   }
-
-  delete(id: number): Observable<any>{
-    const url = '${{this.apiPath}}/${{id}}';
+  delete(id: number): Observable<any> {
+    const url = `${this.apiPath}/${id}`;
 
     return this.http.delete(url).pipe(
-      catchError(this.handleError),
-      map(() => null)
+      map(() => null),
+      catchError(this.handleError)
     )
   }
 
